@@ -287,7 +287,6 @@ export const formatTimestamp = (messageDate: number) => {
 const jsonBlockPattern = /```json\n([\s\S]*?)\n```/;
 
 export const shouldRespondTemplate = `# Task: Decide on behalf of {{agentName}} whether they should respond to the message, ignore it or stop the conversation.
-{{providers}}
 # Instructions: Decide if {{agentName}} should respond to or interact with the conversation.
 If the message is directed at or relevant to {{agentName}}, respond with RESPOND action.
 If a user asks {{agentName}} to be quiet, respond with STOP action.
@@ -302,7 +301,11 @@ Response format should be formatted in a valid JSON block like this:
     "providers": ["<string>", "<string>", ...]
 }
 \`\`\`
-Your response should include the valid JSON block and nothing else.`;
+Your response should include the valid JSON block and nothing else.
+
+Below this line is the context you should use to make your decision.
+
+{{providers}}`;
 
 export const providersTemplate = `# Task: Determine which providers would be most relevant for {{agentName}} to use in responding to this message.
 {{providers}}
